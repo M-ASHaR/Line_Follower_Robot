@@ -1,0 +1,221 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Line Follower Robot\\
+
+
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Muhammad Ashar Khan}
+\IEEEauthorblockA{\textit{Electrical Engineering Department} \\
+\textit{UET Lahore}\\
+2019ee27@student.uet.edu.pk}
+\and
+
+\IEEEauthorblockN{2\textsuperscript{nd}Muhammad Noman Qayyum}
+\IEEEauthorblockA{\textit{Electrical Engineering Department} \\
+\textit{UET Lahore}\\
+2019ee30@student.uet.edu.pk}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd}Muhammad Hassan Asim}
+\IEEEauthorblockA{\textit{Electrical Engineering Department} \\
+\textit{UET Lahore}\\
+2019ee41@student.uet.edu.pk}
+}
+
+\maketitle
+
+\begin{abstract}
+This report is a model and instructions for Line Follower Robot. The Line Follower Robot is an automated machine that can detect and follow a track drawn on a surface. The track may be a black surface or a black line.\\
+There are many other Line follower Robots in market made of Arduino or some other micro-controllers, but we have made one using CORTEX M4 TIVA C Board. It has more options, more pins, more configurations, more stability, reasonable expenses and runs in the best way with minimum errors.
+
+\end{abstract}
+
+
+
+\section{Introduction}
+This document is a model and instructions for Line Follower Robot. In this report, we have discussed the technology that has been a way to ease our life. In the perception of human desire that it seeks relaxation in everything, Line Follower Robot is a mobile machine that can detect and follow the line drawn on the floor. Generally, the path is predefined and can be either visible like a black line on a white surface with a high contrasting color or it can be invisible like a magnetic field.\\
+\begin{center}
+    \includegraphics[scale=0.065]{2.jpeg}
+    \scriptsize \textbf{\textit{Fig 1.Complete Assembled Robot}}
+   
+\end{center}
+
+ Therefore, this kind of Robot should sense the line with its Infrared Ray (IR) sensors installed under the robot. After that, the data is transmitted to the processor by specific transition buses. Hence, the processor is going to decide the proper commands and then it sends them to the optocoupler circuit and this circuit gives output to the motor driver, which gives power to the motors, and thus the path will be followed by the line follower robot.
+
+\section{Methodology}
+The method that we followed in this project is divided into two main parts:
+\subsection{Hardware Part}
+First, the Hardware part was done in which the car chassis was assembled and the following components and sensors are used:
+\begin{itemize}
+    \item Sensors
+    \item Motor Driver
+    \item Controller
+    \item Optocouplers
+    \item Chasis and Body structure
+\end{itemize}
+\begin{center}
+    \includegraphics[width=6cm, height=4cm]{pic 1.png}\\
+    \scriptsize \textbf{\textit{Fig 2. Circuit Diagram}}
+\end{center}
+\textbf{Line Follower Sensor:}\\
+In the Line Follower Robot that we made, we used a BFD-1000 sensor Module. Which is a  Channel Line Tracking Sensor Module (BFD-1000) is a sensor board designed for use with line follower robots. This module has been sufficient to meet the day-to-day task of tracking, but also with the infrared distance sensor and touch detection sensor, the board makes your robot design able to adapt to the situation easily.
+\begin{center}
+    \includegraphics[scale=0.03]{3.jpg}\\
+    \scriptsize \textbf{\textit{Fig 3.BFD-1000 LFR Module}}
+\end{center}
+In this project, this module is used as an input module that takes input from the sensors on it and those sensors read the color of the path below them. Contrary to the black surfaces, white surfaces are good reflectors. If the receiver receives the reflection ray, it means that the robot is on white and if it cannot receive it, so the robot is on black. Hence This device works by measuring the amount of light that is reflected into the receiver. As the receiver also responds to the other ambient lights, so it is useful to protect the sensors from the ambient light rays.\\
+Hence the height element is very important in this regard and the sensor is set to the height of 2-10 mm.\\
+\newline
+\textbf{Micro-Controller(TM4C123G):}\\
+The next thing that comes into the project after Line Follower Robot is the Micro-controller Tiva Board. We did this project to practice another idea towards automation and for this purpose, this TIVA board is considered because of its wide range in embedded systems. The TM4C Series TM4C123G LaunchPad is an IT upgrade Stellaris LaunchPad adding support options PWMs for motion control and functionality. 
+\begin{center}
+    \includegraphics[width=5cm, height=4cm]{4.jpg}\\
+    \scriptsize \textbf{\textit{Fig 4. Tiva C board}}
+\end{center}
+The board is equipped with 40 pins that can perform multifunctions, that is, they can be configured as inputs or outputs, digital or analog, or other functions, allowing for a wide variety of applications. Its pins are 3.3V standard.\\
+The Tiva is powered with the battery through a booster charger\textbf{(J5019)} that is providing a boost of 5Volts from 3.7Volts. and it takes the input from the BFD-1000 Line Follower Sensor Module and after taking the input it processes it by the programming done and gives output to the optocoupler Circuit next to it. \\
+\newline
+\textbf{Optocoupler Circuit:}\\
+After the Tiva Board has processed the input from the LFR module concerning the coding done into it, it then gives output to the optocoupler circuit. The optocoupler circuit is used as a protection to protect the TIVA Board from burning due to the Back E.M.F produced due to motors. Optocoupler consists of gallium arsenide infrared LED and a silicon NPN phototransistor.
+\begin{center}
+    \includegraphics[scale=0.4]{opto.png}\\
+        \scriptsize \textbf{\textit{Fig 5. Optocoupler Circuit}}
+\end{center}
+As it can be seen in the figure above, there are four optocouplers used in this project that are connected through their pin 1 with the Tiva Board. Pin 2 is grounded, optocoupler forbids the flow of Back E.M.F from their side coming from DC motors. At the output side of the 4n35 Coupler Pull down resistors of 1K-ohm are also used to protect our system. \\
+\newline
+\textbf{Motor Driver(L298N):}\\
+This L298N Motor Driver is a high-power motor driver module for driving DC and Stepper Motors. It receives the input from the optocoupler circuit. L298N Module can control up to 4 DC motors, or 2 DC motors with directional and speed control.\\
+The L298N Motor Driver module consists of an L298 Motor Driver IC, 78M05 Voltage Regulator, resistors, capacitor, Power LED, 5V jumper in an integrated circuit. The line following sensor sends the signals to the microcontroller and it only sends a PWM signal to the optocoupler circuit then optocouplers circuit processes the signal and sends it to the motor driver. The motor driver is powered by the 2000mAh battery and the motor driver according to the PWM signal sets the speed of the dc motor.
+\begin{center}
+    \includegraphics[scale=0.17]{6.jpg}\\
+    \scriptsize \textbf{\textit{Fig 6. Motor Driver L298N}}
+\end{center}
+
+Actually the diver gives positive voltage to one of the motor pins and gives negative voltage to another one which there is five states:
+\begin{enumerate}
+    \item Both of the motors are turn on and rotate forward 
+simultaneously. (Move Forward)
+    \item The right motor is turn on and the left motor is turn off. (Move Left) 
+    \item The left motor is turn on and the right motor is turn off. (Move Right) 
+    \item The right motor rotates forward and the left motor 
+rotates backward. (Move Left Fast) 
+    \item The left motor is rotate forward and the right motor 
+rotates backward. (Move Right Fast)
+
+\end{enumerate}
+
+\textbf{The Actuators (Motors and wheels):}\\
+The movement of the robot is the most important part and this vital role is played by an actuator. an actuator is a device that converts energy, which may be electric, hydraulic, pneumatic, etc., to mechanical in such a way that it can be controlled. Actuators are not something you would read about every day in media, unlike artificial intelligence and machine learning. But the reality is that it plays a critical role in the modern world almost like no other device ever invented.\\
+In our line following robot we have used the permanent dc motor because, in a permanent DC motor, an armature rotates inside a magnetic field. The basic working principle of a DC motor is based on the fact that whenever a current-carrying conductor is placed inside a magnetic field, there will be mechanical force experienced by that conductor.\\
+\begin{center}
+    \includegraphics[scale=0.2]{7.jpg}\\
+    \scriptsize \textbf{\textit{Fig 7. Actuators(motor and wheel)}}
+\end{center}
+In general, a programming technique is used in this project to control the speed of motors and it will be explained in the programming part. The actuator gets the signals from the motor driver from those signals the Dc motor decides its speed accordingly.\\
+\newline
+\textbf{Chassis and Body Structure:}\\
+There are some good materials for designing robots such as wood, plastic, aluminum and brass alloys. We have used the plastic material because:
+\begin{itemize}
+    \item It is strong
+    \item Easy to carry 
+    \item Easy to recycle
+    \item And it is inexpensive
+\end{itemize}
+All the components are installed on the chassis the list of the components are as follows:
+\begin{itemize}
+    \item Sensors
+    \item Motor Driver L298N
+    \item Controller
+    \item Batteries (4000mAh,900mAh)
+    \item Booster Chargers
+    \item Optocouplers circuit
+\end{itemize}
+We have installed all the components with the help of screws and glue. Due to a large number of components and the small size of the chassis, the appearance of the robot is not so good but it is not our main purpose. Our main motive is that our robot works efficiently.	
+
+
+\subsection{Software Part}
+Every microcontroller has its special compiler which we 
+can write a program with the C language or Assembly language for them. For compilation purposes, we have used Keil uvision4 software.  After compiling, we must send the compiled program to the microcontroller with the programmer, then for uploading our program into the TIVA board we used the Stellaris debugger. A programmer is a device that can be connected with a computer and we must put the microcontroller on the programmer and then the programmer sends the program into the microcontroller's ROM. There are a lot of programmers 
+and we must use a programmer which can support our 
+microcontroller.\\
+Hence, the Software part of the report is done using three criterias:
+\begin{enumerate}
+    \item Using If-else Statement.
+    \item Using PWM(Pulse Width Modulator).
+    \item Using PID(Proportional Integral Derivative) Controller. 
+\end{enumerate}
+
+\textbf{If-Else Statement:}\\
+First, we configured the TIVA using If else statement algorithms. In this regard, we used the Line follower sensor module and used the IR sensors on the module to give input to the TIVA board. The sensor reads the values from the floor as it can differentiate between black and other surfaces. On a black surface the sensor above that surface lights up and the one that could not detect the blacklight stays close.\\
+The input is given to TIVA by Line Follower at port D using pins(0,1,2,3,6).The Tiva then proccessed these and sent signals to optocoupler circuit using Port B.\\
+Hence by using simple If-Else coding following cases are defined:
+\begin{itemize}
+    \item Move Straight:\\
+    If the centered three sensors lights up.
+    \item Move Right:\\
+    If the right three sensors lights up.
+    \item Move Left:\\
+    If the left three sensors light up.
+    \item Move Left Fast:\\
+    If the left two sensors lights up.
+    \item Move Right Fast:\\
+    If the right two sensors lights up.
+\end{itemize}
+These conditions were applied to the Line follower Robot. The processing part was done in the TIVA configuration and after protection circuit it was send to motor driver. The motor driver than gave power to the actuators and the Robot starts working.\\
+\newline
+Although the project was working with the If Else statement, but we saw that it was not up to the mark. As, through this algorithm speed of motor cannot be controlled, and the robot cannot take sharp turns. Thus, the Line Follower was not following the path completely, and to overcome with this case we used Pulse Width Modulator(PWM).\\
+\newline
+\textbf{Pulse Width Modulator(PWM):}\\
+As dicussed above, to overcome the issues we faced using If Else statement PWM is used. Through PWM motors are assigned their respective duty cycle. The duty cycle is the fraction of one period when a system or signal is active.We typically express a duty cycle as a ratio or percentage. A period is the time it takes for a signal to conclude a full ON-OFF cycle. Our project is working on \textbf{50\% duty cycle}. Through this PWM we can control the speed of both motors simultaneously.The pulse width odulator is defined with the analog pins of the TIVA board hence it can control the speed of motors continously. \\
+Considering the input from the sensors the duty cycle given to motors may increase or decrease, and the robot can take sharp turns accordingly and also it follows the track more precisely when the Pulse Width Modulator is defined.\\
+The PWM module was working very finely but to gain more accuracy and as per the instructions given, project is also defined using Proportional Integral Derivative(PID) controller.\\
+\newline
+\textbf{Proportional Integral Derivative(PID):}\\
+As the PID is used to further enhance the productivity of Line Follower Robot, so let's first have it's brief introduction.\\
+\begin{center}
+    \includegraphics[scale=0.4]{equation.png}
+    
+\end{center}
+the PID controller works in a closed-loop system using the schematic shown above. The variable ($e$) represents the tracking error, the difference between the desired output ($r$) and the actual output ($y$). This error signal ($e$) is fed to the PID controller, and the controller computes both the derivative and the integral of this error signal with respect to time. The control signal ($u$) to the plant is equal to the proportional gain ($K_p$) times the magnitude of the error plus the integral gain ($K_i$) times the integral of the error plus the derivative gain ($K_d$) times the derivative of the error.\\
+There are three parameters in PID i.e. $K_p$, $K_i$, $K_d$, and they are used in the following ways as, if we have to take sharp turns the $K_p$ is used. But there is a disadvantage in using this method, that is the value of $K_p$ can also increase the overshoot, and the car can deviate from it's original path. Just to overcome this error $K_d$ is used that decreases the overshoot. And the value of $K_i$ is set to zero because it adds all the errors and we don't want errors to be added.
+
+
+
+\section{Result:}
+So now all our project is complete, the project worked in three phases as follows:
+\begin{itemize}
+    \item IF-Else Statement
+    \item PWM Modulator
+    \item PID Controller
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=8cm, height=4cm]{Screenshot (86).png}\\
+    \scriptsize \textbf{\textit{Fig 8. Complete Working Body of Project}}
+\end{center}
+As everything of hardware and software is explained in the above discussion and the project is working finely. The arena is now covered by the Line Follower Robot.\\
+The working of the project started with switching on the power button. By that, the Line follower sensor BFD-1000 turned on and starts reading the surface. This Line follower sensor is powered with a LIPO battery and when it reads the surface, it sends that reading to the TIVA board. TIVA board gets the input from the sensor and senses which surface is below the sensor as we have to follow a track i.e. Black surface.\\
+The TIVA board is configured and it works according to the programming done into it. It first receives the signals, processes them, and then transfers them to a protection circuit i.e. an optocoupler circuit used in the protection. This circuit stops back E.M.F produced by the motors with the use of 4n35 optocouplers and some pull-down resistors. Optocouplers are then connected to the motor driver L298N, this driver regulates the voltages and sends the power to the DC motor and this power also varies in the face of the duty cycle of each motor to make our Line Follower Robot run on the track. \\ 
+
+\section{Conclusion:}
+The most awaited conclusion section of the project finally comes. In the current form, the robot is following the line and it's enough capable in every aspect. It is following all kinds of curves practiced. There are many other Line Follower Robots that exist, but we have made the one with the lightweight and has a high speed because points are awarded and adjusted on the basis of speed. For this purpose, two high-speed motors are used.
+\subsection*{Difficulties we faced:}
+Although there were some difficulties that we faced during the project as it was unenviable to control the speed of the motors with If-else statement. The other one was to fix all the hardware part on the case. 
+\subsection*{Remedies:}
+For the Speed Control issue of the motor to be solved we used PWM and to fix all the components on the chassis we used a glue gun and screws. In this way, the project also looked like a well-assembled one.
+
+
+
+
+\end{document}
